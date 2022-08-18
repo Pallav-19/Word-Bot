@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
-const { Telegraf } = require("telegraf");
-const bot = new Telegraf(process.env.TOKEN);
+const { Composer } = require("micro-bot");
+const bot = new Composer(process.env.BOT_TOKEN);
 
 bot.start((ctx) => {
   ctx.telegram.sendMessage(
@@ -139,8 +139,10 @@ bot.command("word", async (ctx) => {
   }
 });
 
-bot.launch();
-
+// bot.launch();
 // Enable graceful stop
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
+module.exports = bot;
+
+
